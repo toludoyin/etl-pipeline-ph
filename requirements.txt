@@ -1,0 +1,8 @@
+Flask-SQLAlchemy
+numpy
+pandas
+psycopg2
+python-dateutil
+python-dotenv
+requests
+SQLAlchemy
