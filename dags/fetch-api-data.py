@@ -1,14 +1,16 @@
 #  Build a function that can take in any country code and fetch the data and also carry out this transformation step.
 
 import requests
+import numpy as np
 import pandas as pd
 import psycopg2
 from datetime import datetime, timedelta
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, types
 import os
 from dotenv import load_dotenv
+import json
 from airflow.decorators import dag, task
-from  airflow.operators.python import PythonOperator 
+from airflow.hooks.base_hook import BaseHook
 import pendulum
 
 load_dotenv()
@@ -16,7 +18,7 @@ load_dotenv()
 @dag(
         dag_id="data_ingestion",
         schedule= "0 9 * * 0-6",
-        start_date=pendulum.datetime(2023, 11, 1, tz="UTC"),
+        start_date=pendulum.datetime(2023, 12, 1, tz="UTC"),
         catchup=False,     
 )
 
@@ -41,45 +43,33 @@ def data_ingestion_workflow():
             # day (Monday, Tuesday, Friday etc.) each of those holiday falls in
             holiday_df['date'] = pd.to_datetime(holiday_df['date'])
             holiday_df['day_of_week'] = holiday_df['date'].dt.day_name()
+            # df['column_name'] = df['column_name'].astype(str)
             return holiday_df
+
 
     @task()
     def load_data(holiday_df): 
-        # connect to postgresql dbms
-        db_params = {
-        'dbname': os.getenv('dbname'),
-        'user': os.getenv('user'),
-        'password': os.getenv('password'),
-        'host': os.getenv('host'), 
-        'port': os.getenv('port'),     
-        }
+        for column in holiday_df.columns:
+            if isinstance(holiday_df[column].iloc[0], np.ndarray):
+                holiday_df[column] = holiday_df[column].apply(lambda x: x.tolist())
 
-        conn = psycopg2.connect(**db_params)
-        conn.autocommit = True
-        cursor  = conn.cursor()
+        # write dataframe to db
+        conn_id='postgres_conn'
+        table_name = 'country_holiday'
+        connection = BaseHook.get_connection(conn_id)
+        engine = f"postgresql+psycopg2://{connection.login}:{connection.password}@{connection.host}:{connection.port}/{connection.schema}"
 
         try:
-            new_db_name = 'public_holiday'
-            cursor.execute(f"select 1 from pg_catalog.pg_database where datname='{new_db_name}'")
-            exists = cursor.fetchone()
-            if not exists:
-                cursor.execute(f'create database {new_db_name}')
-                
-                # connect to new db
-                db_params['db_name']= new_db_name
-                engine = create_engine(f"postgresql+psycopg2://{db_params['user']}:{db_params['password']}@{db_params['host']}:{db_params['port']}/{db_params['db_name']}")
-
-                # write dataframe to db
-                table_name = 'country_holiday'
-                holiday_df.to_sql(table_name, engine,  if_exists = 'replace')
-                print(f"Data successfully stored in {table_name} table in the {new_db_name} Database")
-        
+            existing_tables = pd.read_sql_query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'", engine)
+            if table_name in existing_tables.values:
+                 print(f'{table_name} already exists in the database. Skip data loading.')
             else:
-                print(f'Database {new_db_name} already exists')
-        except psycopg2.Error as e:
-            print(f'An error occured: {e}')
-        finally:
-            conn.close()
+                holiday_df.to_sql(table_name, engine,  if_exists = 'replace', index=False)
+                print(f"Data successfully stored in {table_name} table in the Database")
+            
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
 
 
     data_from_api = fetch_data_from_api(country_code='NG') 

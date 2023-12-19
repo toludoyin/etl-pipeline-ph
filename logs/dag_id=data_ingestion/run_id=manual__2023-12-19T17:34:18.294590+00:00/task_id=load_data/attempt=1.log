@@ -1,0 +1,15 @@
+[2023-12-19T17:34:22.193+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_ingestion.load_data manual__2023-12-19T17:34:18.294590+00:00 [queued]>
+[2023-12-19T17:34:22.197+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_ingestion.load_data manual__2023-12-19T17:34:18.294590+00:00 [queued]>
+[2023-12-19T17:34:22.197+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2023-12-19T17:34:22.203+0000] {taskinstance.py:1382} INFO - Executing <Task(_PythonDecoratedOperator): load_data> on 2023-12-19 17:34:18.294590+00:00
+[2023-12-19T17:34:22.209+0000] {standard_task_runner.py:57} INFO - Started process 7466 to run task
+[2023-12-19T17:34:22.212+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion', 'load_data', 'manual__2023-12-19T17:34:18.294590+00:00', '--job-id', '213', '--raw', '--subdir', 'DAGS_FOLDER/fetch-api-data.py', '--cfg-path', '/tmp/tmpllbz35tn']
+[2023-12-19T17:34:22.214+0000] {standard_task_runner.py:85} INFO - Job 213: Subtask load_data
+[2023-12-19T17:34:22.243+0000] {task_command.py:416} INFO - Running <TaskInstance: data_ingestion.load_data manual__2023-12-19T17:34:18.294590+00:00 [running]> on host 0e061ef32f7f
+[2023-12-19T17:34:22.336+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_ingestion' AIRFLOW_CTX_TASK_ID='load_data' AIRFLOW_CTX_EXECUTION_DATE='2023-12-19T17:34:18.294590+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-12-19T17:34:18.294590+00:00'
+[2023-12-19T17:34:22.342+0000] {base.py:73} INFO - Using connection ID 'postgres_conn' for task execution.
+[2023-12-19T17:34:22.373+0000] {logging_mixin.py:154} INFO - country_holiday already exists in the database. Skip data loading.
+[2023-12-19T17:34:22.373+0000] {python.py:194} INFO - Done. Returned value was: None
+[2023-12-19T17:34:22.377+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=data_ingestion, task_id=load_data, execution_date=20231219T173418, start_date=20231219T173422, end_date=20231219T173422
+[2023-12-19T17:34:22.431+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2023-12-19T17:34:22.440+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check
