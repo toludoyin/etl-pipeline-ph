@@ -43,7 +43,7 @@ def data_ingestion_workflow():
         connection = None
         cursor = None
         try:
-            # connect postgresdb on airflow
+            # connect to postgresdb on airflow
             table_name = 'public_holiday'
             conn_id = 'postgres_conn'
             engine = BaseHook.get_connection(conn_id)
