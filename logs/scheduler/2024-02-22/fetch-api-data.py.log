@@ -5586,3 +5586,66 @@ SyntaxError: invalid syntax
 [2024-02-22T15:36:02.751+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:36:02.751+0000] {dag.py:2941} INFO - Sync 1 DAGs
 [2024-02-22T15:36:02.766+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:36:02.765+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
 [2024-02-22T15:36:02.784+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.288 seconds
+[2024-02-22T15:36:33.149+0000] {processor.py:157} INFO - Started process (PID=9917) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:36:33.151+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:36:33.152+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:36:33.152+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:36:33.332+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:36:33.352+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:36:33.351+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:36:33.365+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:36:33.365+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:36:33.380+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.236 seconds
+[2024-02-22T15:37:03.585+0000] {processor.py:157} INFO - Started process (PID=9930) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:37:03.587+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:37:03.588+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:37:03.588+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:37:03.804+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:37:03.823+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:37:03.823+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:37:03.854+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:37:03.854+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:37:03.862+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.283 seconds
+[2024-02-22T15:37:33.985+0000] {processor.py:157} INFO - Started process (PID=9943) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:37:33.987+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:37:33.988+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:37:33.988+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:37:34.222+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:37:34.253+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:37:34.253+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:37:34.266+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:37:34.266+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:37:34.274+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.294 seconds
+[2024-02-22T15:38:04.551+0000] {processor.py:157} INFO - Started process (PID=9956) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:38:04.552+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:38:04.553+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:38:04.553+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:38:04.773+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:38:04.801+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:38:04.801+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:38:04.815+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:38:04.814+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:38:04.827+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.281 seconds
+[2024-02-22T15:38:35.023+0000] {processor.py:157} INFO - Started process (PID=9969) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:38:35.027+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:38:35.028+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:38:35.028+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:38:35.249+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:38:35.272+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:38:35.272+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:38:35.290+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:38:35.290+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:38:35.306+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.290 seconds
+[2024-02-22T15:39:05.477+0000] {processor.py:157} INFO - Started process (PID=9989) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:39:05.479+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:39:05.480+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:39:05.479+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:39:05.670+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:39:05.692+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:39:05.692+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:39:05.707+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:39:05.707+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:39:05.715+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.243 seconds
+[2024-02-22T15:39:36.072+0000] {processor.py:157} INFO - Started process (PID=10002) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:39:36.074+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:39:36.075+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:39:36.074+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:39:36.255+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:39:36.278+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:39:36.278+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:39:36.291+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:39:36.291+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:39:36.303+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.236 seconds
+[2024-02-22T15:40:06.464+0000] {processor.py:157} INFO - Started process (PID=10015) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:40:06.466+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:40:06.468+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:40:06.468+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:40:06.667+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:40:06.687+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:40:06.687+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:40:06.702+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:40:06.702+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:40:06.722+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.267 seconds
+[2024-02-22T15:40:36.947+0000] {processor.py:157} INFO - Started process (PID=10028) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:40:36.950+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-02-22T15:40:36.951+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:40:36.951+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:40:37.153+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-02-22T15:40:37.174+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:40:37.174+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-02-22T15:40:37.188+0000] {logging_mixin.py:154} INFO - [2024-02-22T15:40:37.188+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-02-22T09:00:00+00:00, run_after=2024-02-23T09:00:00+00:00
+[2024-02-22T15:40:37.195+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.258 seconds
