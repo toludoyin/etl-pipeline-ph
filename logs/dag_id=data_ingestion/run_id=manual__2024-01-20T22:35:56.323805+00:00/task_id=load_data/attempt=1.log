@@ -1,0 +1,27 @@
+[2024-01-20T22:36:00.051+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_ingestion.load_data manual__2024-01-20T22:35:56.323805+00:00 [queued]>
+[2024-01-20T22:36:00.055+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_ingestion.load_data manual__2024-01-20T22:35:56.323805+00:00 [queued]>
+[2024-01-20T22:36:00.055+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-01-20T22:36:00.059+0000] {taskinstance.py:1382} INFO - Executing <Task(_PythonDecoratedOperator): load_data> on 2024-01-20 22:35:56.323805+00:00
+[2024-01-20T22:36:00.063+0000] {standard_task_runner.py:57} INFO - Started process 14946 to run task
+[2024-01-20T22:36:00.064+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion', 'load_data', 'manual__2024-01-20T22:35:56.323805+00:00', '--job-id', '266', '--raw', '--subdir', 'DAGS_FOLDER/fetch-api-data.py', '--cfg-path', '/tmp/tmp36nwdwsr']
+[2024-01-20T22:36:00.066+0000] {standard_task_runner.py:85} INFO - Job 266: Subtask load_data
+[2024-01-20T22:36:00.087+0000] {task_command.py:416} INFO - Running <TaskInstance: data_ingestion.load_data manual__2024-01-20T22:35:56.323805+00:00 [running]> on host 1cee5fdf7640
+[2024-01-20T22:36:00.148+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_ingestion' AIRFLOW_CTX_TASK_ID='load_data' AIRFLOW_CTX_EXECUTION_DATE='2024-01-20T22:35:56.323805+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-20T22:35:56.323805+00:00'
+[2024-01-20T22:36:00.152+0000] {base.py:73} INFO - Using connection ID 'postgres_conn' for task execution.
+[2024-01-20T22:36:00.154+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 221, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/fetch-api-data.py", line 65, in load_data
+    extras.execute_values(engine, query, tuples)
+  File "/home/airflow/.local/lib/python3.8/site-packages/psycopg2/extras.py", line 1287, in execute_values
+    sql = sql.encode(_ext.encodings[cur.connection.encoding])
+AttributeError: 'str' object has no attribute 'connection'
+[2024-01-20T22:36:00.159+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=data_ingestion, task_id=load_data, execution_date=20240120T223556, start_date=20240120T223600, end_date=20240120T223600
+[2024-01-20T22:36:00.163+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 266 for task load_data ('str' object has no attribute 'connection'; 14946)
+[2024-01-20T22:36:00.199+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-01-20T22:36:00.209+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

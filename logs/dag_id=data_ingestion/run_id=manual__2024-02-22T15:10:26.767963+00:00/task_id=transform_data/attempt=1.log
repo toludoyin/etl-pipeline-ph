@@ -1,0 +1,25 @@
+[2024-02-22T15:10:29.496+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_ingestion.transform_data manual__2024-02-22T15:10:26.767963+00:00 [queued]>
+[2024-02-22T15:10:29.501+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_ingestion.transform_data manual__2024-02-22T15:10:26.767963+00:00 [queued]>
+[2024-02-22T15:10:29.501+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-02-22T15:10:29.510+0000] {taskinstance.py:1382} INFO - Executing <Task(_PythonDecoratedOperator): transform_data> on 2024-02-22 15:10:26.767963+00:00
+[2024-02-22T15:10:29.514+0000] {standard_task_runner.py:57} INFO - Started process 8901 to run task
+[2024-02-22T15:10:29.518+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion', 'transform_data', 'manual__2024-02-22T15:10:26.767963+00:00', '--job-id', '396', '--raw', '--subdir', 'DAGS_FOLDER/fetch-api-data.py', '--cfg-path', '/tmp/tmpv95yxm5y']
+[2024-02-22T15:10:29.523+0000] {standard_task_runner.py:85} INFO - Job 396: Subtask transform_data
+[2024-02-22T15:10:29.551+0000] {task_command.py:416} INFO - Running <TaskInstance: data_ingestion.transform_data manual__2024-02-22T15:10:26.767963+00:00 [running]> on host 8ffe65393bc1
+[2024-02-22T15:10:29.591+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_ingestion' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2024-02-22T15:10:26.767963+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-22T15:10:26.767963+00:00'
+[2024-02-22T15:10:29.599+0000] {python.py:194} INFO - Done. Returned value was:         date           localName  ...   types  dayofweek
+0 2024-01-01      New Year's Day  ...  Public     Monday
+1 2024-03-29         Good Friday  ...  Public     Friday
+2 2024-04-01       Easter Monday  ...  Public     Monday
+3 2024-05-01        Workers' Day  ...  Public  Wednesday
+4 2024-05-27      Children's Day  ...  Public     Monday
+5 2024-06-12       Democracy Day  ...  Public  Wednesday
+6 2024-10-01        National Day  ...  Public    Tuesday
+7 2024-11-01  National Youth Day  ...  Public     Friday
+8 2024-12-25       Christmas Day  ...  Public  Wednesday
+9 2024-12-26          Boxing Day  ...  Public   Thursday
+
+[10 rows x 10 columns]
+[2024-02-22T15:10:29.629+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=data_ingestion, task_id=transform_data, execution_date=20240222T151026, start_date=20240222T151029, end_date=20240222T151029
+[2024-02-22T15:10:29.654+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-02-22T15:10:29.665+0000] {taskinstance.py:2778} INFO - 1 downstream tasks scheduled from follow-on schedule check

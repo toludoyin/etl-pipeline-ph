@@ -1,0 +1,26 @@
+[2024-02-22T10:39:24.074+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_ingestion.load_data manual__2024-02-22T10:39:20.327543+00:00 [queued]>
+[2024-02-22T10:39:24.077+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_ingestion.load_data manual__2024-02-22T10:39:20.327543+00:00 [queued]>
+[2024-02-22T10:39:24.078+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-02-22T10:39:24.082+0000] {taskinstance.py:1382} INFO - Executing <Task(_PythonDecoratedOperator): load_data> on 2024-02-22 10:39:20.327543+00:00
+[2024-02-22T10:39:24.086+0000] {standard_task_runner.py:57} INFO - Started process 1403 to run task
+[2024-02-22T10:39:24.088+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion', 'load_data', 'manual__2024-02-22T10:39:20.327543+00:00', '--job-id', '364', '--raw', '--subdir', 'DAGS_FOLDER/fetch-api-data.py', '--cfg-path', '/tmp/tmp60gj5njl']
+[2024-02-22T10:39:24.090+0000] {standard_task_runner.py:85} INFO - Job 364: Subtask load_data
+[2024-02-22T10:39:24.108+0000] {task_command.py:416} INFO - Running <TaskInstance: data_ingestion.load_data manual__2024-02-22T10:39:20.327543+00:00 [running]> on host 8ffe65393bc1
+[2024-02-22T10:39:24.220+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_ingestion' AIRFLOW_CTX_TASK_ID='load_data' AIRFLOW_CTX_EXECUTION_DATE='2024-02-22T10:39:20.327543+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-22T10:39:20.327543+00:00'
+[2024-02-22T10:39:24.223+0000] {logging_mixin.py:154} INFO - Error while connecting to PostgreSQL connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+	Is the server running locally and accepting connections on that socket?
+[2024-02-22T10:39:24.223+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 221, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/fetch-api-data.py", line 86, in load_data
+    if connection:
+UnboundLocalError: local variable 'connection' referenced before assignment
+[2024-02-22T10:39:24.233+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=data_ingestion, task_id=load_data, execution_date=20240222T103920, start_date=20240222T103924, end_date=20240222T103924
+[2024-02-22T10:39:24.240+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 364 for task load_data (local variable 'connection' referenced before assignment; 1403)
+[2024-02-22T10:39:24.261+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-02-22T10:39:24.271+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

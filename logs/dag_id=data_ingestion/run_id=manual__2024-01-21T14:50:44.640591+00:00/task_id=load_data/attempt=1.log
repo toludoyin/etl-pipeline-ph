@@ -1,0 +1,32 @@
+[2024-01-21T14:50:48.780+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_ingestion.load_data manual__2024-01-21T14:50:44.640591+00:00 [queued]>
+[2024-01-21T14:50:48.783+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_ingestion.load_data manual__2024-01-21T14:50:44.640591+00:00 [queued]>
+[2024-01-21T14:50:48.783+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-01-21T14:50:48.788+0000] {taskinstance.py:1382} INFO - Executing <Task(PostgresOperator): load_data> on 2024-01-21 14:50:44.640591+00:00
+[2024-01-21T14:50:48.791+0000] {standard_task_runner.py:57} INFO - Started process 41233 to run task
+[2024-01-21T14:50:48.793+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion', 'load_data', 'manual__2024-01-21T14:50:44.640591+00:00', '--job-id', '320', '--raw', '--subdir', 'DAGS_FOLDER/fetch-api-data.py', '--cfg-path', '/tmp/tmp81jm6sx1']
+[2024-01-21T14:50:48.795+0000] {standard_task_runner.py:85} INFO - Job 320: Subtask load_data
+[2024-01-21T14:50:48.814+0000] {task_command.py:416} INFO - Running <TaskInstance: data_ingestion.load_data manual__2024-01-21T14:50:44.640591+00:00 [running]> on host 1cee5fdf7640
+[2024-01-21T14:50:48.844+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_ingestion' AIRFLOW_CTX_TASK_ID='load_data' AIRFLOW_CTX_EXECUTION_DATE='2024-01-21T14:50:44.640591+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-21T14:50:44.640591+00:00'
+[2024-01-21T14:50:48.846+0000] {sql.py:274} INFO - Executing: INSERT INTO country_holiday(%s) VALUES %s ON CONFLICT DO NOTHING %cols
+[2024-01-21T14:50:48.849+0000] {base.py:73} INFO - Using connection ID 'postgres_conn' for task execution.
+[2024-01-21T14:50:48.853+0000] {base.py:73} INFO - Using connection ID 'postgres_conn' for task execution.
+[2024-01-21T14:50:48.905+0000] {sql.py:418} INFO - Running statement: INSERT INTO country_holiday(%s) VALUES %s ON CONFLICT DO NOTHING %cols, parameters: None
+[2024-01-21T14:50:48.907+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 280, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 392, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 423, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.SyntaxError: syntax error at or near "%"
+LINE 1: INSERT INTO country_holiday(%s) VALUES %s ON CONFLICT DO NOT...
+                                    ^
+
+[2024-01-21T14:50:48.914+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=data_ingestion, task_id=load_data, execution_date=20240121T145044, start_date=20240121T145048, end_date=20240121T145048
+[2024-01-21T14:50:48.920+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 320 for task load_data (syntax error at or near "%"
+LINE 1: INSERT INTO country_holiday(%s) VALUES %s ON CONFLICT DO NOT...
+                                    ^
+; 41233)
+[2024-01-21T14:50:48.929+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-01-21T14:50:48.939+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check
