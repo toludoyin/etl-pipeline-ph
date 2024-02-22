@@ -1,19 +1,12 @@
-#  Build a function that can take in any country code and fetch the data and also carry out this transformation step.
-
 import requests
 import numpy as np
 import pandas as pd
 import psycopg2
 from datetime import datetime, timedelta
-from sqlalchemy import create_engine, types
-import os
-from dotenv import load_dotenv
 import json
 from airflow.decorators import dag, task
 from airflow.hooks.base_hook import BaseHook
 import pendulum
-
-load_dotenv()
 
 @dag(
         dag_id="data_ingestion",
@@ -26,56 +19,67 @@ def data_ingestion_workflow():
 
     @task()
     def fetch_data_from_api(country_code):
-        baseurl = f'https://date.nager.at/api/v3/publicholidays/2023/{country_code}'
+        url = f'https://date.nager.at/api/v3/publicholidays/2024/{country_code}'
         try:
-            response = requests.get(baseurl)
+            response = requests.get(url)
             return response.json()
-        
         except requests.exceptions.RequestException as e:
             print(f"An error occurred while fetching data: {e}")
 
     @task()
     def transform_data(data_from_api):
         if data_from_api:
-            # create dataframe with the fetched data
             holiday_df = pd.DataFrame(data_from_api)  
 
-            # day (Monday, Tuesday, Friday etc.) each of those holiday falls in
-            holiday_df['date'] = pd.to_datetime(holiday_df['date'])
-            holiday_df['day_of_week'] = holiday_df['date'].dt.day_name()
-            # df['column_name'] = df['column_name'].astype(str)
+            # day (Monday, Friday etc.) each of those holiday falls in
+            holiday_df['date'] = pd.to_datetime(holiday_df['date'], errors='coerce')
+            holiday_df['dayofweek'] = holiday_df['date'].dt.day_name()
+            holiday_df['types'] = holiday_df['types'].astype(str)
+            holiday_df['types'] = holiday_df['types'].replace(r'\W', '', regex=True)
             return holiday_df
-
 
     @task()
     def load_data(holiday_df): 
-        for column in holiday_df.columns:
-            if isinstance(holiday_df[column].iloc[0], np.ndarray):
-                holiday_df[column] = holiday_df[column].apply(lambda x: x.tolist())
-
-        # write dataframe to db
-        conn_id='postgres_conn'
-        table_name = 'country_holiday'
-        connection = BaseHook.get_connection(conn_id)
-        engine = f"postgresql+psycopg2://{connection.login}:{connection.password}@{connection.host}:{connection.port}/{connection.schema}"
-
+        connection = None
+        cursor = None
         try:
-            existing_tables = pd.read_sql_query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'", engine)
-            if table_name in existing_tables.values:
-                 print(f'{table_name} already exists in the database. Skip data loading.')
-            else:
-                holiday_df.to_sql(table_name, engine,  if_exists = 'replace', index=False)
-                print(f"Data successfully stored in {table_name} table in the Database")
-            
-        except Exception as e:
-            print(f"An error occurred: {e}")
+            # connect postgresdb on airflow
+            table_name = 'public_holiday'
+            conn_id = 'postgres_conn'
+            engine = BaseHook.get_connection(conn_id)
+            conn_string = f"dbname='{engine.schema}' user='{engine.login}' host='{engine.host}' password='{engine.password}' port='{engine.port}'"
+            connection = psycopg2.connect(conn_string)
+            cursor = connection.cursor()
 
+            # create table
+            create_table = f"CREATE TABLE IF NOT EXISTS {table_name} ({','.join([f'{column_name} VARCHAR' for column_name in holiday_df.columns])});"
+            cursor.execute(create_table)
+            connection.commit()
+            print('Table created successfully or already exists')
 
+            # insert column and values
+            column = ', '.join(holiday_df.columns)
+            placeholders = ', '.join(['%s'] * len(holiday_df.columns))
+            query = f"INSERT INTO {table_name} ({column}) VALUES ({placeholders}) ON CONFLICT DO NOTHING"
+
+            for row in holiday_df.values.tolist():
+                cursor.execute(query, row)
+            connection.commit()
+            print('Data inserted successfully')
+
+        except (Exception, psycopg2.Error) as error:
+            print('Error while connecting to PostgreSQL', error)
+
+        finally:
+            if connection:
+                cursor.close()
+                connection.close()
+                print("PostgreSQL connection closed")
 
     data_from_api = fetch_data_from_api(country_code='NG') 
     transformed_data = transform_data(data_from_api)
     loaded_data = load_data(transformed_data)
 
-    data_from_api  >> transformed_data >> loaded_data
+    data_from_api >> transformed_data >> loaded_data
     
 dag = data_ingestion_workflow()
