@@ -7,9 +7,9 @@ Extract data from https://date.nager.at/Api API, transform the data in a readabl
 2. Setup Postgres, PgAdmin and Airflow credentials
 
 ### Initialize Database
-
+```
 $ docker compose up airflow-init
-
+```
 
 ### Run Airflow
 ```
