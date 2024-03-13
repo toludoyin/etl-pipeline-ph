@@ -16,4 +16,8 @@ $ docker compose up airflow-init
 $ docker compose up
 ```
 
+### PgAdmin Server
+1. Register server
+2. Setup connection and input credentials.
+
 <img width="718" alt="Screenshot 2024-02-22 at 17 09 09" src="https://github.com/toludoyin/public-holiday-pipeline/assets/76572085/dc710a18-82d9-4629-8201-90cf7b356c30">
