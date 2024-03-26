@@ -7,12 +7,11 @@ Extract data from https://date.nager.at/Api API, transform the data in a readabl
 2. Deploy Airflow on Docker Compose https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
 3. Setup PgAdmin, Postgres, and Airflow credentials for logins
 
-### Initialize Database
+### Initialize Database and Start Airflow
 ```
 $ docker compose up airflow-init
 ```
 
-### Run Airflow
 ```
 $ docker compose up
 ```
