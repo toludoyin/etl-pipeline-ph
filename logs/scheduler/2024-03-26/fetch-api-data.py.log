@@ -1654,3 +1654,10 @@ SyntaxError: EOL while scanning string literal
 [2024-03-26T16:31:48.117+0000] {logging_mixin.py:154} INFO - [2024-03-26T16:31:48.117+0000] {dag.py:2941} INFO - Sync 1 DAGs
 [2024-03-26T16:31:48.153+0000] {logging_mixin.py:154} INFO - [2024-03-26T16:31:48.153+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-03-26T09:00:00+00:00, run_after=2024-03-27T09:00:00+00:00
 [2024-03-26T16:31:48.173+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.518 seconds
+[2024-03-26T16:32:18.613+0000] {processor.py:157} INFO - Started process (PID=1037) to work on /opt/airflow/dags/fetch-api-data.py
+[2024-03-26T16:32:18.616+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/fetch-api-data.py for tasks to queue
+[2024-03-26T16:32:18.619+0000] {logging_mixin.py:154} INFO - [2024-03-26T16:32:18.618+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/fetch-api-data.py
+[2024-03-26T16:32:19.082+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_ingestion']) retrieved from /opt/airflow/dags/fetch-api-data.py
+[2024-03-26T16:32:19.101+0000] {logging_mixin.py:154} INFO - [2024-03-26T16:32:19.101+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-03-26T16:32:19.112+0000] {logging_mixin.py:154} INFO - [2024-03-26T16:32:19.112+0000] {dag.py:3722} INFO - Setting next_dagrun for data_ingestion to 2024-03-26T09:00:00+00:00, run_after=2024-03-27T09:00:00+00:00
+[2024-03-26T16:32:19.124+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/fetch-api-data.py took 0.529 seconds
