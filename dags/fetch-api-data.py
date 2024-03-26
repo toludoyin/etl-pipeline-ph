@@ -1,5 +1,4 @@
 import requests
-import numpy as np
 import pandas as pd
 import psycopg2
 from datetime import datetime, timedelta
@@ -40,41 +39,35 @@ def data_ingestion_workflow():
 
     @task()
     def load_data(holiday_df): 
-        connection = None
-        cursor = None
         try:
-            # connect to postgresdb on airflow
+            # connect to postgresdb in airflow
             table_name = 'public_holiday'
             conn_id = 'postgres_conn'
             engine = BaseHook.get_connection(conn_id)
-            conn_string = f"dbname='{engine.schema}' user='{engine.login}' host='{engine.host}' password='{engine.password}' port='{engine.port}'"
+            conn_string = f"dbname='{engine.schema}' user='{engine.login}' host='{engine.host}'\
+                            password='{engine.password}' port='{engine.port}'"
             connection = psycopg2.connect(conn_string)
             cursor = connection.cursor()
 
-            # create table
-            create_table = f"CREATE TABLE IF NOT EXISTS {table_name} ({','.join([f'{column_name} VARCHAR' for column_name in holiday_df.columns])});"
+            create_table = f"CREATE TABLE IF NOT EXISTS {table_name} \
+                            ({','.join([f'{column_name} VARCHAR' for column_name in holiday_df.columns])});"
             cursor.execute(create_table)
             connection.commit()
-            print('Table created successfully or already exists')
-
+        
             # insert column and values
             column = ', '.join(holiday_df.columns)
-            placeholders = ', '.join(['%s'] * len(holiday_df.columns))
+            placeholders = ', '.join(['%s'] * len(holiday_df.columns)) # number of columns
             query = f"INSERT INTO {table_name} ({column}) VALUES ({placeholders}) ON CONFLICT DO NOTHING"
 
             for row in holiday_df.values.tolist():
                 cursor.execute(query, row)
             connection.commit()
-            print('Data inserted successfully')
 
         except (Exception, psycopg2.Error) as error:
             print('Error while connecting to PostgreSQL', error)
 
         finally:
-            if connection:
-                cursor.close()
-                connection.close()
-                print("PostgreSQL connection closed")
+            print("Data inserted successfully")
 
     data_from_api = fetch_data_from_api(country_code='NG') 
     transformed_data = transform_data(data_from_api)
