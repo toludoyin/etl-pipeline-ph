@@ -1,6 +1,6 @@
 ### Workflow
 
-Extract data from https://date.nager.at/Api API, transform the data in a readable format and load into a Postgresql database for accessibility, scheduled the flow to run and update table at 09:00, Sunday through Saturday using Airflow.
+Extract data from https://date.nager.at/Api API - A public holiday dataset, transform the data in a readable format and load into a Postgresql database for accessibility, scheduled the flow to run and update table at 09:00, Sunday through Saturday with Airflow.
 
 #### Environment Setup
 1. Install Docker from https://docs.docker.com/compose/install/
